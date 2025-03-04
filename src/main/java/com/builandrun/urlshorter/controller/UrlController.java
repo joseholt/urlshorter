@@ -6,6 +6,7 @@ import com.builandrun.urlshorter.entities.UrlEntity;
 import com.builandrun.urlshorter.repositories.UrlRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +19,8 @@ import java.util.Optional;
 @RestController
 public class UrlController {
 
-    private final UrlRepository urlRepository;
-
-    public UrlController(UrlRepository urlRepository) {
-        this.urlRepository = urlRepository;
-    }
+    @Autowired
+    private UrlRepository urlRepository;
 
     @PostMapping("/shorten-url")
     public ResponseEntity<ShortenUrlResponse> shortenUrl(@RequestBody ShortenUrlRequest request,
